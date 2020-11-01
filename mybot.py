@@ -85,9 +85,7 @@ def handle_text(message):
 """
     maintainStr = """
 1. Follow the link https://docs.google.com/spreadsheets/d/1sN4war5N8FGEkomKv0Vo-lwLmREsEmXt/edit#gid=112716612
-2. Copy the worksheet over to "Spreadsheet"
-3. Head over to https://docs.google.com/spreadsheets/d/1bM8GZfbp3UnvdOAIDhHzAOBK6-HTBIeVMueyy5ZrnxE/edit#gid=541466792
-4. Delete the first worksheet so there's only one of them
+2. Copy the "1 курс" worksheet over to "Botsheet"
 """
 
     if message.text == 'foo':
@@ -199,14 +197,15 @@ def handle_text(message):
 
 
 def keyboardMain():
-    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3, )
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4)
     linkBtn = telebot.types.KeyboardButton('Ссылка')
     todayBtn = telebot.types.KeyboardButton('Пары сёдня')
     todayBtn1 = telebot.types.KeyboardButton('Пары завтра')
+    whatWeek = telebot.types.KeyboardButton('Черта')
     todayBtn2 = telebot.types.KeyboardButton("расписание-на-эту-неделю")
     todayBtn3 = telebot.types.KeyboardButton('расписание-на-следующую-неделю')
 
-    markup.add(linkBtn, todayBtn, todayBtn1, todayBtn2, todayBtn3)
+    markup.add(linkBtn, todayBtn, todayBtn1, whatWeek, todayBtn2, todayBtn3)
     return markup
 
 
