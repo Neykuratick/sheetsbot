@@ -10,8 +10,6 @@ sh = SheetHandler()
 TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
-mode = 'ThisWeek'
-foostrr = 'Расписание на эту неделю'
 
 def listToString(s):
     str1 = ""
@@ -244,5 +242,5 @@ while True:
         pass
 
 
-# if __name__ == "__main__":
-#     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
