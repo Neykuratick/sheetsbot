@@ -121,10 +121,35 @@ class Backend:
 
         elif week % 2 != 0:
             text = ''
-            try:
-                for subject in range(firstclass + 2, lastclass, 2):
-                    text += ch.readCol()['values'][19][subject]
-                    text += '\n\n'
-            except:
-                pass
+
+            if day < 3:
+                try:
+                    for subject in range(firstclass + 2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+            if day == 3:
+                try:
+                    for subject in range(firstclass + 2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+
+            if day == 4:
+                try:
+                    for subject in range(firstclass + 2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+                text += '[НЕ ТОЧНО!!] 10:40 - 12:10 Пара Программирования\n\n'
+
             return text + '.'
