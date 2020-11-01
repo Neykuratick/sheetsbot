@@ -10,7 +10,8 @@ sh = SheetHandler()
 TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
-
+mode = 'ThisWeek'
+foostrr = 'Расписание на эту неделю'
 
 def listToString(s):
     str1 = ""
@@ -29,17 +30,9 @@ def listToString(s):
 #     bot.process_new_updates([update])
 #     return 'ok', 200
 
-@bot.message_handler(commands=['site'])
-def site(message):
-    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, )
-    linkBtn = telebot.types.KeyboardButton('Ссылка')
-    todayBtn = telebot.types.KeyboardButton('Пары сёдня')
-    todayBtn = telebot.types.KeyboardButton('Пары завтра')
-    todayBtn = telebot.types.KeyboardButton('Расписание на эту неделю')
-    todayBtn = telebot.types.KeyboardButton('Расписание на следующую неделю')
-
-    markup.add(linkBtn, todayBtn)
-    bot.send_message(message.chat.id, 'Buttons', reply_markup=markup)
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.send_message(message.chat.id, "Пибет", reply_markup=keyboardMain())
 
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
@@ -134,7 +127,7 @@ def handle_text(message):
 
     if message.text in ['пары', 'пары сёдня']:
         bc = Backend()
-        bot.send_message(message.chat.id, bc.AllForToday())
+        bot.send_message(message.chat.id, bc.AllForToday() + '.')
 
     if message.text == 'пары завтра':
         bc = Backend()
@@ -147,7 +140,7 @@ def handle_text(message):
         if week % 2 == 1:
             bot.send_message(message.chat.id, "сёдня смотрим под чертой")
 
-    # дни недели
+    # wwek days
     if message.text == 'пн':
         bc = Backend()
         bot.send_message(message.chat.id, bc.byDay(0) + '.')
@@ -188,6 +181,50 @@ def handle_text(message):
     if message.text == 'пт2':
         bc = Backend()
         bot.send_message(message.chat.id, bc.byDayNext(4) + '.')
+
+    if message.text == "расписание-на-эту-неделю":
+        bot.send_message(message.chat.id, 'Выбери день', reply_markup=keyboardThisWeek())
+
+    if message.text == "расписание-на-следующую-неделю":
+        bot.send_message(message.chat.id, 'Выбери день', reply_markup=keyboardNextWeek())
+
+    if message.text == "назад":
+        bot.send_message(message.chat.id, 'Ок', reply_markup=keyboardMain())
+
+def keyboardMain():
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3, )
+    linkBtn = telebot.types.KeyboardButton('Ссылка')
+    todayBtn = telebot.types.KeyboardButton('Пары сёдня')
+    todayBtn1 = telebot.types.KeyboardButton('Пары завтра')
+    todayBtn2 = telebot.types.KeyboardButton("расписание-на-эту-неделю")
+    todayBtn3 = telebot.types.KeyboardButton('расписание-на-следующую-неделю')
+
+    markup.add(linkBtn, todayBtn, todayBtn1, todayBtn2, todayBtn3)
+    return markup
+
+def keyboardThisWeek():
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, )
+    mon = telebot.types.KeyboardButton('пн')
+    tue = telebot.types.KeyboardButton('вт')
+    wed = telebot.types.KeyboardButton('ср')
+    thr = telebot.types.KeyboardButton('чт')
+    fri = telebot.types.KeyboardButton('пт')
+    back = telebot.types.KeyboardButton('назад')
+
+    markup.add(mon, tue, wed, thr, fri, back)
+    return markup
+
+def keyboardNextWeek():
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, )
+    mon = telebot.types.KeyboardButton('пн2')
+    tue = telebot.types.KeyboardButton('вт2')
+    wed = telebot.types.KeyboardButton('ср2')
+    thr = telebot.types.KeyboardButton('чт2')
+    fri = telebot.types.KeyboardButton('пт2')
+    back = telebot.types.KeyboardButton('назад')
+
+    markup.add(mon, tue, wed, thr, fri, back)
+    return markup
 
 # @server.route('/' + TOKEN, methods=['POST'])
 # def getMessage():

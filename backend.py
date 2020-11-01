@@ -33,7 +33,7 @@ class Backend:
                     text += '\n\n'
             except:
                 pass
-            return text
+            return text + '.'
 
     def byDay(self, day):
         weekday = day
@@ -60,7 +60,7 @@ class Backend:
                     text += '\n\n'
             except:
                 pass
-            return text
+            return text + '.'
 
 
     def tomorrowClasses(self):
@@ -92,7 +92,7 @@ class Backend:
                     text += '\n\n'
             except:
                 pass
-            return text
+            return text + '.'
 
     def byDayNext(self, day): #nextweek
         weekday = day
@@ -120,7 +120,7 @@ class Backend:
                     text += '\n\n'
             except:
                 pass
-            return text
+            return text + '.'
 
 
 
