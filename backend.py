@@ -14,6 +14,9 @@ class Backend:
         firstclass = weekday * 10
         lastclass = firstclass + 10
 
+        if weekday >= 5:
+            return 'Сёдня адыхаем'
+
         if week % 2 == 0:
             text = ''
             try:
@@ -66,10 +69,14 @@ class Backend:
     def tomorrowClasses(self):
         weekday = datetime.datetime.today().weekday()
         week = datetime.date.today().isocalendar()[1]
-        if weekday >= 4:
+        if weekday == 4 or weekday == 5:
             return "Завтра адыхаем"
         else:
             weekday += 1
+
+        if weekday > 4:
+            weekday = 0
+            week += 1
 
         firstclass = weekday * 10
         lastclass = firstclass + 10
@@ -82,7 +89,7 @@ class Backend:
                     text += '\n\n'
             except:
                 pass
-            return text
+            return text + '.'
 
         elif week % 2 != 0:
             text = ''
@@ -121,9 +128,3 @@ class Backend:
             except:
                 pass
             return text + '.'
-
-
-
-
-bc = Backend()
-bc.AllForToday()

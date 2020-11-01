@@ -58,7 +58,7 @@ def convert_to_RFC_datetime(year=1900, month=1, day=1, hour=0, minute=0):
 CLIENT_SECRET_FILE = 'secret.json'
 API_NAME = 'sheets'
 API_VERSION = 'v4'
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
 counter = 0
 
@@ -100,7 +100,7 @@ class ConnectSheet:
         response = service.spreadsheets().values().get(
             spreadsheetId=spreadsheet_id,
             majorDimension='COLUMNS',
-            range='Copy of 1 курс (копия)!A11:T100'
+            range='1 курс (копия)!A11:T100'
         ).execute()
 
         return response

@@ -6,9 +6,13 @@ from backend import Backend
 import datetime
 from flask import Flask, request
 
+#https://teletype.in/@cozy_codespace/Hk70-Ntl4 - heroku deploy
+
 print("Successfully")
 sh = SheetHandler()
-TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'
+
+TOKEN = '1364748694:AAE__vAI4IZJAFOvw5DUp29vyNaO6t3kZkg' # test
+# TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk' # release
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
@@ -77,13 +81,10 @@ def handle_text(message):
 9. foo - для разрабов
 """
     maintainStr = """
-да, я сноб. Знаю
-
 1. Follow the link https://docs.google.com/spreadsheets/d/1sN4war5N8FGEkomKv0Vo-lwLmREsEmXt/edit#gid=112716612
 2. Copy the worksheet over to "Spreadsheet"
 3. Head over to https://docs.google.com/spreadsheets/d/1bM8GZfbp3UnvdOAIDhHzAOBK6-HTBIeVMueyy5ZrnxE/edit#gid=541466792
 4. Delete the first worksheet so there's only one of them
-
 """
 
     if message.text == 'foo':
