@@ -7,6 +7,8 @@ import datetime
 from flask import Flask, request
 
 # https://teletype.in/@cozy_codespace/Hk70-Ntl4 - heroku deploy
+# git add .
+# git commit -m "commit"
 # git push origin master
 # git push heroku master
 # heroku ps:scale worker=1
@@ -14,8 +16,8 @@ from flask import Flask, request
 print("Successfully")
 sh = SheetHandler()
 
-TOKEN = '1364748694:AAE__vAI4IZJAFOvw5DUp29vyNaO6t3kZkg' # test
-# TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk' # release
+# TOKEN = '1364748694:AAE__vAI4IZJAFOvw5DUp29vyNaO6t3kZkg' # test
+TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk' # release
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
