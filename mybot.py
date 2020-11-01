@@ -8,7 +8,7 @@ from flask import Flask, request
 print("Successfully")
 sh = SheetHandler()
 TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'
-bot = telebot.TeleBot(token=TOKEN)
+bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
