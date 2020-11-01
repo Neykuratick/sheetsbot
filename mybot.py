@@ -14,8 +14,8 @@ from flask import Flask, request
 print("Successfully")
 sh = SheetHandler()
 
-# TOKEN = '1364748694:AAE__vAI4IZJAFOvw5DUp29vyNaO6t3kZkg' # test
-TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk' # release
+TOKEN = '1364748694:AAE__vAI4IZJAFOvw5DUp29vyNaO6t3kZkg' # test
+# TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk' # release
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
@@ -92,14 +92,16 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'https://cdn.fishki.net/upload/post/2018/02/18/2515915/8-1.jpg')
 
     if message.text in ['help', 'хелп', 'помоги', '/help']:
-        bot.send_message(message.chat.id, helpStr)
+        bot.send_message(message.chat.id, helpStr, reply_markup=keyboardMain())
 
     if message.text == 'maintain':
         bot.send_message(message.chat.id, maintainStr)
 
     if message.text in ['ссылку', 'ссылка', 'ссыль', 'сс']:
-        bot.send_message(message.chat.id,
-                         "https://docs.google.com/spreadsheets/d/1sN4war5N8FGEkomKv0Vo-lwLmREsEmXt/edit#gid=112716612")
+        bot.send_message(
+            message.chat.id,
+            "https://docs.google.com/spreadsheets/d/1sN4war5N8FGEkomKv0Vo-lwLmREsEmXt/edit#gid=112716612",
+            reply_markup=keyboardMain())
 
     if message.text == '1':
         bot.send_message(message.chat.id, "2")
