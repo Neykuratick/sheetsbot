@@ -239,15 +239,15 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='' + TOKEN)
+    bot.set_webhook(url='https://mybot69420.herokuapp.com/' + TOKEN)
     return '!', 200
 
 
-while True:
-    try:
-        bot.polling()
-    except:
-        pass
+# while True:
+#     try:
+#         bot.polling()
+#     except:
+#         pass
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
