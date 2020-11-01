@@ -8,6 +8,12 @@ from backend import Backend
 import datetime
 from flask import Flask, request
 
+print("Successfully")
+sh = SheetHandler()
+TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'
+bot = telebot.TeleBot(token=TOKEN)
+server = Flask(__name__)
+
 
 def listToString(s):
     str1 = ""
@@ -15,18 +21,16 @@ def listToString(s):
         str1 += ele
     return str1
 
-
-bot = telebot.TeleBot("1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk", parse_mode=None)
-bot.remove_webhook()
-secret = 'egege3423'
-bot.set_webhook(url='Neykuratick.pythonanywhere.com' + secret)
-
-app = Flask(__name__)
-@app.route('/'+secret, methods=['POST'])
-def webhook():
-    update = telebot.types.Update.de_json((request.stream.read().decode('utc-8')))
-    bot.process_new_updates([update])
-    return 'ok', 200
+# bot.remove_webhook()
+# secret = 'egege3423'
+# bot.set_webhook(url='Neykuratick.pythonanywhere.com' + secret)
+#
+# app = Flask(__name__)
+# @app.route('/'+secret, methods=['POST'])
+# def webhook():
+#     update = telebot.types.Update.de_json((request.stream.read().decode('utc-8')))
+#     bot.process_new_updates([update])
+#     return 'ok', 200
 
 @bot.message_handler(commands=['site'])
 def site(message):
@@ -188,8 +192,18 @@ def handle_text(message):
         bc = Backend()
         bot.send_message(message.chat.id, bc.byDayNext(4) + '.')
 
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return '!', 200
 
-print("Successfully")
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='' + TOKEN)
+    return '!', 200
+# bot.polling()
 
-sh = SheetHandler()
-bot.polling()
+
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
