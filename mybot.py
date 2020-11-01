@@ -11,11 +11,13 @@ TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
+
 def listToString(s):
     str1 = ""
     for ele in s:
         str1 += ele
     return str1
+
 
 # bot.remove_webhook()
 # secret = 'egege3423'
@@ -31,6 +33,7 @@ def listToString(s):
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.send_message(message.chat.id, "Пибет", reply_markup=keyboardMain())
+
 
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
@@ -189,6 +192,7 @@ def handle_text(message):
     if message.text == "назад":
         bot.send_message(message.chat.id, 'Ок', reply_markup=keyboardMain())
 
+
 def keyboardMain():
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3, )
     linkBtn = telebot.types.KeyboardButton('Ссылка')
@@ -199,6 +203,7 @@ def keyboardMain():
 
     markup.add(linkBtn, todayBtn, todayBtn1, todayBtn2, todayBtn3)
     return markup
+
 
 def keyboardThisWeek():
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, )
@@ -212,6 +217,7 @@ def keyboardThisWeek():
     markup.add(mon, tue, wed, thr, fri, back)
     return markup
 
+
 def keyboardNextWeek():
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=4, )
     mon = telebot.types.KeyboardButton('пн2')
@@ -224,23 +230,24 @@ def keyboardNextWeek():
     markup.add(mon, tue, wed, thr, fri, back)
     return markup
 
-# @server.route('/' + TOKEN, methods=['POST'])
-# def getMessage():
-#     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-#     return '!', 200
-#
-# @server.route("/")
-# def webhook():
-#     bot.remove_webhook()
-#     bot.set_webhook(url='' + TOKEN)
-#     return '!', 200
+
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return '!', 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='' + TOKEN)
+    return '!', 200
+
 
 while True:
     try:
         bot.polling()
     except:
         pass
-
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
