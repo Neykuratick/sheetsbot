@@ -1,7 +1,4 @@
 import telebot
-from winreg import *
-import subprocess
-import os
 from SheetHandler import SheetHandler
 from ConnectSheet import ConnectSheet
 from backend import Backend
