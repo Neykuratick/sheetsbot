@@ -15,8 +15,8 @@ def listToString(s):
         str1 += ele
     return str1
 
-
-bot = telebot.TeleBot("1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk", parse_mode=None)
+TOKEN = '
+bot = telebot.TeleBot(TOKEN, parse_mode=None)
 bot.remove_webhook()
 secret = 'egege3423'
 bot.set_webhook(url='Neykuratick.pythonanywhere.com' + secret)
