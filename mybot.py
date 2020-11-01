@@ -237,7 +237,11 @@ def keyboardNextWeek():
 #     bot.set_webhook(url='' + TOKEN)
 #     return '!', 200
 
-bot.polling()
+while True:
+    try:
+        bot.polling()
+    except:
+        pass
 
 
 # if __name__ == "__main__":
