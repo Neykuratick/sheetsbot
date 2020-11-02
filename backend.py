@@ -13,6 +13,7 @@ class Backend:
         weekday = datetime.datetime.today().weekday()
         firstclass = weekday * 10
         lastclass = firstclass + 10
+        week = datetime.date.today().isocalendar()[1]
 
         if weekday >= 5:
             return 'Сёдня адыхаем'
