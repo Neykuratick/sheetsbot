@@ -9,34 +9,59 @@ class Backend:
     def __init__(self):
         self.text = 'h'
 
+
+    def scraper(self):
+        pass
+
     def AllForToday(self):
         weekday = datetime.datetime.today().weekday()
-        firstclass = weekday * 10 + 1
-        lastclass = firstclass + 10
         week = datetime.date.today().isocalendar()[1]
 
-        if weekday >= 5:
-            return 'Сёдня адыхаем'
+        firstclass = weekday * 10
+        lastclass = firstclass + 10
 
         if week % 2 == 0:
             text = ''
             try:
-                for subject in range(firstclass, lastclass):
-                    if subject % 2 != 0:
-                        text += ch.readCol()['values'][19][subject]
-                        text += '\n\n'
+                for subject in range(firstclass + 1, lastclass, 2):
+                    text += ch.readCol()['values'][19][subject]
+                    text += '\n\n'
             except:
                 pass
             return text
 
         elif week % 2 != 0:
             text = ''
-            try:
-                for subject in range(firstclass, lastclass, 2):
-                    text += ch.readCol()['values'][19][subject]
-                    text += '\n\n'
-            except:
-                pass
+
+            if weekday < 3:
+                try:
+                    for subject in range(firstclass + 2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+            elif weekday == 3:
+                try:
+                    for subject in range(firstclass + 2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+
+            elif weekday == 4:
+                try:
+                    for subject in range(firstclass + 2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+                text += '[НЕ ТОЧНО!!] 10:40 - 12:10 Пара Программирования\n\n'
             return text + '.'
 
     def byDay(self, day):
@@ -58,12 +83,36 @@ class Backend:
 
         elif week % 2 != 0:
             text = ''
-            try:
-                for subject in range(firstclass+2, lastclass, 2):
-                    text += ch.readCol()['values'][19][subject]
-                    text += '\n\n'
-            except:
-                pass
+
+            if weekday < 3:
+                try:
+                    for subject in range(firstclass+2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+            elif weekday == 3:
+                try:
+                    for subject in range(firstclass+2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+                text += '[НЕ ТОЧНО!!] Пара матана\n\n'
+
+            elif weekday == 4:
+                try:
+                    for subject in range(firstclass+2, lastclass, 2):
+                        text += ch.readCol()['values'][19][subject]
+                        text += '\n\n'
+                except:
+                    pass
+
+                text += '[НЕ ТОЧНО!!] 10:40 - 12:10 Пара Программирования\n\n'
             return text + '.'
 
 
