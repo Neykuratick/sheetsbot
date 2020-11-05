@@ -39,16 +39,19 @@ def send_welcome(message):
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
     message.text = message.text.lower()
+
+    # creating google sheets session
     sh = SheetHandler()
     ch = ConnectSheet()
 
+    # writing to log
     current_time = datetime.datetime.now()
     now = current_time.strftime("%H:%M:%S")
     chat_id = str(message.chat.id)
-
     if chat_id == '388953283':
         chat_id = 'me'
-    print('Used. Time: ' + now + '. By: ' + chat_id)
+    with open('log.txt', 'a') as log:
+        log.write('Used. Time: ' + now + '. By: ' + chat_id + '\n')
 
     fooStr = """
 1. maintain
@@ -59,6 +62,8 @@ def handle_text(message):
 5. reset - deletes 2 worksheet in Botsheet and creates new instead
 6. week - today's week
 7. heroku - heroku link
+8. clear log
+9. print log
 """
     helpStr = """
 Он не показывает 4 пары по нечётным неделям: три матана в четверг и одно программирование в пятницу
@@ -93,6 +98,17 @@ foohelp
 """
     if message.text == 'heroku':
         bot.send_message(message.chat.id, 'https://dashboard.heroku.com/apps/guarded-retreat-31483/logs')
+
+    if message.text == 'clear log':
+        with open('log.txt', 'w') as log:
+            log.write('')
+        bot.send_message(message.chat.id, 'log cleared')
+
+    if message.text == 'print log':
+        with open('log.txt', 'r') as log:
+            text = log.read()
+
+        bot.send_message(message.chat.id, text)
 
     if message.text == 'foohelp':
         bot.send_message(message.chat.id, fooStr)
