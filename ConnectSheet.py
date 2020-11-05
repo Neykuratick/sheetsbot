@@ -8,7 +8,7 @@ from google.auth.transport.requests import Request
 import datetime
 
 
-# -- Google --
+# -- Google library --
 
 def Create_Service(client_secret_file, api_name, api_version, *scopes):
     print(client_secret_file, api_name, api_version, scopes, sep='-')
@@ -52,7 +52,7 @@ def convert_to_RFC_datetime(year=1900, month=1, day=1, hour=0, minute=0):
     return dt
 
 
-# -- Google --
+# -- Google library --
 
 
 CLIENT_SECRET_FILE = 'secret.json'

@@ -23,7 +23,7 @@ class Backend:
             firstclass_const = 2
             range_const = 2
 
-        if weekday < 3 or week % 2 == 0:
+        if weekday < 3 or week % 2 == 0: # just normal scraping
             try:
                 for subject in range(firstclass + firstclass_const, lastclass, range_const):
                     text += ch.readCol()['values'][19][subject]
@@ -31,7 +31,7 @@ class Backend:
             except:
                 pass
 
-        elif weekday == 3 and week % 2 != 0:
+        elif weekday == 3 and week % 2 != 0: # adds maths classes in case if they're not in there
             try:
                 for subject in range(firstclass + firstclass_const, lastclass, range_const):
                     text += ch.readCol()['values'][19][subject]
@@ -43,7 +43,7 @@ class Backend:
             text += '[НЕ ТОЧНО!!] Пара матана\n\n'
             text += '[НЕ ТОЧНО!!] Пара матана\n\n'
 
-        elif weekday == 4 and week % 2 != 0:
+        elif weekday == 4 and week % 2 != 0: # adds programming classes in case if they're not in there
             try:
                 for subject in range(firstclass + firstclass_const, lastclass, range_const):
                     text += ch.readCol()['values'][19][subject]
@@ -71,7 +71,7 @@ class Backend:
     def tomorrowClasses(self):
         weekday = datetime.datetime.today().weekday()
         week = datetime.date.today().isocalendar()[1]
-        if weekday == 4 or weekday == 5:
+        if weekday == 4 or weekday == 5: # if tomorrow is saturday or sunday
             return "Завтра адыхаем"
         else:
             weekday += 1
@@ -82,7 +82,7 @@ class Backend:
 
         return self.scraper(weekday, week)
 
-    def byDayNext(self, day): #nextweek
+    def byDayNext(self, day): # by next week
         weekday = day
         week = datetime.date.today().isocalendar()[1]
         week += 1

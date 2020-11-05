@@ -1,5 +1,4 @@
 import telebot
-import os
 from SheetHandler import SheetHandler
 from ConnectSheet import ConnectSheet
 from backend import Backend
@@ -17,7 +16,7 @@ print("Successfully")
 sh = SheetHandler()
 
 # TOKEN = '1364748694:AAE__vAI4IZJAFOvw5DUp29vyNaO6t3kZkg' # test
-TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk' # release
+TOKEN = '1279723497:AAEW_-tXerF6e3DRt1MsAt5fxX-d24synGk'  # release
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
@@ -28,17 +27,6 @@ def listToString(s):
         str1 += ele
     return str1
 
-
-# bot.remove_webhook()
-# secret = 'egege3423'
-# bot.set_webhook(url='Neykuratick.pythonanywhere.com' + secret)
-#
-# app = Flask(__name__)
-# @app.route('/'+secret, methods=['POST'])
-# def webhook():
-#     update = telebot.types.Update.de_json((request.stream.read().decode('utc-8')))
-#     bot.process_new_updates([update])
-#     return 'ok', 200
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -148,7 +136,7 @@ def handle_text(message):
         if week % 2 == 1:
             bot.send_message(message.chat.id, "сёдня смотрим под чертой")
 
-    # wwek days
+    # week days
     if message.text == 'пн':
         bc = Backend()
         bot.send_message(message.chat.id, bc.byDay(0) + '.')
@@ -169,7 +157,7 @@ def handle_text(message):
         bc = Backend()
         bot.send_message(message.chat.id, bc.byDay(4) + '.')
 
-    # дни следующей недели
+    # next week
     if message.text == 'пн2':
         bc = Backend()
         bot.send_message(message.chat.id, bc.byDayNext(0) + '.')
@@ -239,23 +227,8 @@ def keyboardNextWeek():
     return markup
 
 
-# @server.route('/' + TOKEN, methods=['POST'])
-# def getMessage():
-#     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-#     return '!', 200
-#
-# @server.route("/")
-# def webhook():
-#     bot.remove_webhook()
-#     bot.set_webhook(url='https://mybot69420.herokuapp.com/' + TOKEN)
-#     return '!', 200
-
-
 while True:
     try:
         bot.polling()
     except:
         pass
-#
-# if __name__ == "__main__":
-#     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
