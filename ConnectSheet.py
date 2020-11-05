@@ -81,9 +81,6 @@ class ConnectSheet:
         ).execute()
 
     def readCol(self):
-        current_time = datetime.datetime.now()
-        now = current_time.strftime("%H:%M:%S")
-        print(now + ' readed')
         """
         This method reads spreadsheet in range from A11 to A62
         it returns list of list. How to access:

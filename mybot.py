@@ -5,12 +5,15 @@ from backend import Backend
 import datetime
 from flask import Flask, request
 
-# https://teletype.in/@cozy_codespace/Hk70-Ntl4 - heroku deploy
-# git add .
-# git commit -m "commit"
-# git push origin master
-# git push heroku master
-# heroku ps:scale worker=1
+"""
+https://teletype.in/@cozy_codespace/Hk70-Ntl4 - heroku deploy
+switch to release token!!
+git add .
+git commit -m "commit"
+git push origin master
+git push heroku master
+heroku ps:scale worker=1
+"""
 
 print("Successfully")
 sh = SheetHandler()
@@ -38,6 +41,14 @@ def handle_text(message):
     message.text = message.text.lower()
     sh = SheetHandler()
     ch = ConnectSheet()
+
+    current_time = datetime.datetime.now()
+    now = current_time.strftime("%H:%M:%S")
+    chat_id = str(message.chat.id)
+
+    if chat_id == '388953283':
+        chat_id = 'me'
+    print('Used. Time: ' + now + '. By: ' + chat_id)
 
     fooStr = """
 1. maintain
