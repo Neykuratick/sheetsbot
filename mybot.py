@@ -58,6 +58,7 @@ def handle_text(message):
 4.1 copy - copies worksheet from Spreadsheet to Botsheet
 5. reset - deletes 2 worksheet in Botsheet and creates new instead
 6. week - today's week
+7. heroku - heroku link
 """
     helpStr = """
 Он не показывает 4 пары по нечётным неделям: три матана в четверг и одно программирование в пятницу
@@ -83,11 +84,18 @@ def handle_text(message):
 8. черта
 
 9. foo - для разрабов
+
+foohelp
 """
     maintainStr = """
 1. Follow the link https://docs.google.com/spreadsheets/d/1sN4war5N8FGEkomKv0Vo-lwLmREsEmXt/edit#gid=112716612
 2. Copy the "1 курс" worksheet over to "Botsheet"
 """
+    if message.text == 'heroku':
+        bot.send_message(message.chat.id, 'https://dashboard.heroku.com/apps/guarded-retreat-31483/logs')
+
+    if message.text == 'foohelp':
+        bot.send_message(message.chat.id, fooStr)
 
     if message.text == 'foo':
         bot.send_message(message.chat.id, 'https://cdn.fishki.net/upload/post/2018/02/18/2515915/8-1.jpg')
