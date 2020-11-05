@@ -11,7 +11,7 @@ class Backend:
 
     def AllForToday(self):
         weekday = datetime.datetime.today().weekday()
-        firstclass = weekday * 10
+        firstclass = weekday * 10 + 1
         lastclass = firstclass + 10
         week = datetime.date.today().isocalendar()[1]
 

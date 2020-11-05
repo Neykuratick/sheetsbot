@@ -135,6 +135,7 @@ def handle_text(message):
 
     if message.text in ['пары', 'пары сёдня']:
         bc = Backend()
+        bot.send_message(message.chat.id, 'ВНИМАНИЕ!! ЭТА КНОПКА РАБОТАЕТ НЕ ВСЕГДА')
         bot.send_message(message.chat.id, bc.AllForToday() + '.')
 
     if message.text == 'пары завтра':
