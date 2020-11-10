@@ -9,6 +9,26 @@ class Backend:
     def __init__(self):
         self.text = 'h'
 
+    def addTime(self, classNumber):
+        text = ''
+
+        if classNumber % 10 <= 2:
+            text += '[09:00 - 10:30] '
+
+        elif classNumber % 10 > 2 and classNumber % 10 <= 4:
+            text += '[10:40 - 12:10] '
+
+        elif classNumber % 10 > 4 and classNumber % 10 <= 6:
+            text += '[12:40 - 14:10] '
+
+        elif classNumber % 10 > 6 and classNumber % 10 <= 8:
+            text += '[14:20 - 15:50] '
+
+        elif classNumber % 10 > 8 and classNumber % 10 <= 10:
+            text += '[16:00 - 17:30] '
+
+        return text
+
 
     def scraper(self, weekday, week):
         text = ''
@@ -26,6 +46,7 @@ class Backend:
         if weekday < 3 or week % 2 == 0: # just normal scraping
             try:
                 for subject in range(firstclass + firstclass_const, lastclass, range_const):
+                    text += self.addTime(subject)
                     text += ch.readCol()['values'][19][subject]
                     text += '\n\n'
             except:
@@ -34,6 +55,7 @@ class Backend:
         elif weekday == 3 and week % 2 != 0: # adds maths classes in case if they're not in there
             try:
                 for subject in range(firstclass + firstclass_const, lastclass, range_const):
+                    text += self.addTime(subject)
                     text += ch.readCol()['values'][19][subject]
                     text += '\n\n'
             except:
@@ -46,6 +68,7 @@ class Backend:
         elif weekday == 4 and week % 2 != 0: # adds programming classes in case if they're not in there
             try:
                 for subject in range(firstclass + firstclass_const, lastclass, range_const):
+                    text += self.addTime(subject)
                     text += ch.readCol()['values'][19][subject]
                     text += '\n\n'
             except:

@@ -158,7 +158,7 @@ foohelp
 
     if message.text in ['пары', 'пары сёдня']:
         bc = Backend()
-        bot.send_message(message.chat.id, bc.AllForToday() + '.')
+        bot.send_message(message.chat.id, bc.AllForToday())
 
     if message.text == 'пары завтра':
         bc = Backend()
@@ -174,44 +174,44 @@ foohelp
     # week days
     if message.text == 'пн':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDay(0) + '.')
+        bot.send_message(message.chat.id, bc.byDay(0))
 
     if message.text == 'вт':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDay(1) + '.')
+        bot.send_message(message.chat.id, bc.byDay(1))
 
     if message.text == 'ср':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDay(2) + '.')
+        bot.send_message(message.chat.id, bc.byDay(2))
 
     if message.text == 'чт':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDay(3) + '.')
+        bot.send_message(message.chat.id, bc.byDay(3))
 
     if message.text == 'пт':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDay(4) + '.')
+        bot.send_message(message.chat.id, bc.byDay(4))
 
     # next week
     if message.text == 'пн2':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDayNext(0) + '.')
+        bot.send_message(message.chat.id, bc.byDayNext(0))
 
     if message.text == 'вт2':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDayNext(1) + '.')
+        bot.send_message(message.chat.id, bc.byDayNext(1))
 
     if message.text == 'ср2':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDayNext(2) + '.')
+        bot.send_message(message.chat.id, bc.byDayNext(2))
 
     if message.text == 'чт2':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDayNext(3) + '.')
+        bot.send_message(message.chat.id, bc.byDayNext(3))
 
     if message.text == 'пт2':
         bc = Backend()
-        bot.send_message(message.chat.id, bc.byDayNext(4) + '.')
+        bot.send_message(message.chat.id, bc.byDayNext(4))
 
     if message.text == "расписание-на-эту-неделю":
         bot.send_message(message.chat.id, 'Выбери день', reply_markup=keyboardThisWeek())
