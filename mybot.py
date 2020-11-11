@@ -108,7 +108,10 @@ foohelp
         with open('log.txt', 'r') as log:
             text = log.read()
 
-        bot.send_message(message.chat.id, text)
+        try:
+            bot.send_message(message.chat.id, text)
+        except:
+            bot.send_message(message.chat.id, 'message might be too long\nconsider cleaning logs')
 
     if message.text == 'foohelp':
         bot.send_message(message.chat.id, fooStr)
