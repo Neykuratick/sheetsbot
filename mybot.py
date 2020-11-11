@@ -111,7 +111,7 @@ foohelp
         try:
             bot.send_message(message.chat.id, text)
         except:
-            bot.send_message(message.chat.id, 'message might be too long\nconsider cleaning logs')
+            bot.send_message(message.chat.id, 'A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message is too long\n\ntry: clear log')
 
     if message.text == 'foohelp':
         bot.send_message(message.chat.id, fooStr)
