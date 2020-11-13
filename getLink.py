@@ -28,7 +28,7 @@ def getLink(cellNumber):
         obj = res.json()
         link = obj["sheets"][0]['data'][0]['rowData'][cellNumber]['values'][0]['hyperlink']
         # link = obj["sheets"][0]['data'][0]['rowData']
-        return link
+        return link + ' '
     except Exception as e:
         return e
 
