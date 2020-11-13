@@ -29,8 +29,8 @@ def getLink(cellNumber):
         link = obj["sheets"][0]['data'][0]['rowData'][cellNumber]['values'][0]['hyperlink']
         # link = obj["sheets"][0]['data'][0]['rowData']
         return link
-    except:
-        return '.'
+    except Exception as e:
+        return e
 
 
 def getValue(cellNumber): # alternative method to read spreadsheet
